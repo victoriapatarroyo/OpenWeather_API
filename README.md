@@ -15,59 +15,122 @@ Full Stack web application that consumes the OpenWeather API to display real-tim
 
 ## 🎯 Project Overview
 
-This project demonstrates client-server architecture, RESTful API integration, asynchronous programming, and secure environment variable management.
+This project demonstrates:
+
+- Client-server architecture  
+- RESTful API integration  
+- Asynchronous programming  
+- Secure environment variable management  
 
 The application allows users to:
 
-- Enter a city name in Spanish
-- Retrieve current weather data
-- View temperature in Celsius
-- Display humidity and weather description
+- Enter a city name in Spanish  
+- Retrieve current weather data  
+- View temperature in Celsius  
+- Display humidity and weather description  
+
+---
+
+## 💡 Why I Built This Project
+
+I built this application to strengthen my understanding of Full Stack development fundamentals, particularly the interaction between frontend and backend systems.
+
+My main goals were:
+
+- To practice building a RESTful API using Express  
+- To securely manage API keys using environment variables  
+- To integrate a third-party API (OpenWeather)  
+- To reinforce asynchronous programming concepts (`async/await`)  
+- To apply clean separation of concerns between client and server  
+
+This project reflects my commitment to building practical applications that simulate real-world development scenarios.
+
+---
+
+## 🚧 Challenges & Learnings
+
+During the development of this project, I faced several practical challenges that helped me strengthen my technical foundation.
+
+### 🔹 Handling Asynchronous Operations
+
+Managing asynchronous requests between the frontend and backend required proper implementation of `async/await` and structured error handling.  
+This reinforced my understanding of Promises and JavaScript’s non-blocking execution model.
+
+### 🔹 Secure API Key Management
+
+Instead of exposing the OpenWeather API key in the frontend, I implemented a backend layer using Express and managed the key with environment variables (`dotenv`).  
+This deepened my understanding of security best practices in web applications.
+
+### 🔹 Client-Server Communication
+
+Designing and consuming a custom REST endpoint (`/weather`) improved my understanding of HTTP methods, status codes, and structured JSON responses.
+
+### 🔹 Error Handling Strategy
+
+Handling invalid city names and API errors required implementing appropriate HTTP status codes (404) and user-friendly frontend feedback.  
+This strengthened my approach to building resilient applications.
+
+### 🔹 Separation of Concerns
+
+Structuring the project with a clear division between frontend and backend reinforced scalable architecture principles and clean code practices.
+
+---
+
+Through these challenges, I gained hands-on experience building a real-world web application and strengthened my Full Stack development foundation.
 
 ---
 
 ## 🏗 Architecture
 
 ### 🔹 Frontend
-- Semantic HTML5
-- CSS3 styling
-- Vanilla JavaScript (ES6)
-- Fetch API
-- Dynamic DOM manipulation
+
+- Semantic HTML5  
+- CSS3 styling  
+- Vanilla JavaScript (ES6)  
+- Fetch API  
+- Dynamic DOM manipulation  
 
 ### 🔹 Backend
-- Node.js
-- Express.js
-- Axios for HTTP requests
-- Dotenv for environment variables
-- CORS configuration
-- REST endpoint implementation
+
+- Node.js  
+- Express.js  
+- Axios for HTTP requests  
+- Dotenv for environment variables  
+- CORS configuration  
+- REST endpoint implementation  
 
 ---
 
 ## 🔄 Application Flow
 
-1. User enters a city name.
-2. Frontend validates the input.
+1. User enters a city name.  
+2. Frontend validates the input.  
 3. A GET request is sent to:
 
 
-4. Backend calls the OpenWeather API.
-5. JSON response is returned.
-6. Frontend dynamically updates the UI.
+/weather?city=CityName
+
+
+4. Backend calls the OpenWeather API.  
+5. JSON response is returned.  
+6. Frontend dynamically updates the UI.  
 
 ---
 
 ## 📡 API Endpoint
 
-| Method | Endpoint   | Description                |
-|--------|------------|----------------------------|
-| GET    | /weather   | Get weather data by city   |
+| Method | Endpoint  | Description                |
+|--------|----------|----------------------------|
+| GET    | /weather | Get weather data by city   |
 
 ### Example Request
 
 
+http://localhost:3000/weather?city=Bogota
+
+
 ### Example Response
+
 ```json
 {
   "name": "Bogota",
@@ -81,38 +144,64 @@ The application allows users to:
     }
   ]
 }
+```
 
-### Installation
+---
+
+## ⚙️ Installation
+
+### 1️⃣ Clone the repository
+```bash
 git clone https://github.com/yourusername/weather-app.git
 cd weather-app
+```
 
-### Install dependencies
+### 2️⃣ Install dependencies
+```bash
 npm install
+```
 
-### Create .env file
+### 3️⃣ Create .env file
+```
 OPENWEATHER_API_KEY=your_api_key_here
+```
 
-### Start the server
+### 4️⃣ Start the server
+```bash
 node server.js
-http://localhost:3000
-Open index.html in your browser.
+```
 
-Technical Skills Demonstrated
-Full Stack development fundamentals
-RESTful API integration
-Asynchronous programming (async/await)
-Client-server communication
-HTTP error handling
-Secure API key management
-Separation of concerns
-Dynamic DOM manipulation
+Server runs at: `http://localhost:3000`
 
-🔮 Future Improvements
-🌎 Display country flag
-📅 5-day weather forecast
-🌙 Dark mode
-📍 Geolocation detection
+Open `index.html` in your browser.
 
-👩‍💻 Author
-Victoria Eugenia Patarroyo Villamil
+---
+
+## 🧠 Technical Skills Demonstrated
+
+- ⚙️ Full Stack development fundamentals
+- 🔗 RESTful API integration
+- ⏳ Asynchronous programming (async/await)
+- 🖧 Client-server communication
+- 🚨 HTTP error handling
+- 🔐 Secure API key management
+- 🗂️ Separation of concerns
+- 🖱️ Dynamic DOM manipulation
+
+---
+
+## 🔮 Future Improvements
+
+- 🌎 Display country flag
+- 📅 5-day weather forecast
+- 🌙 Dark mode
+- 📍 Geolocation detection
+- 🐳 Docker containerization
+- ☁️ Cloud deployment
+
+---
+
+## 👩‍💻 Author
+
+**Victoria Eugenia Patarroyo Villamil**  
 Aspiring Full Stack Developer focused on building scalable and practical web applications.
