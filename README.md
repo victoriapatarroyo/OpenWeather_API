@@ -152,7 +152,7 @@ http://localhost:3000/weather?city=Bogota
 
 ### 1️⃣ Clone the repository
 ```bash
-git clone https://github.com/yourusername/weather-app.git
+git clone https://github.com/victoriapatarroyo/weather-app.git
 cd weather-app
 ```
 
