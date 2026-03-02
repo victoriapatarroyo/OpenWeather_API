@@ -13,14 +13,6 @@ Full Stack web application that consumes the OpenWeather API to display real-tim
 
 ---
 
-## 📸 Preview
-
-> (Add a screenshot inside an `/assets` folder and replace the file name below)
-
-![App Screenshot](./assets/screenshot.png)
-
----
-
 ## 🎯 Project Overview
 
 This project demonstrates client-server architecture, RESTful API integration, asynchronous programming, and secure environment variable management.
