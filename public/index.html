@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>App Clima</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>🌦 Consulta el Clima</h1>
+
+      <div class="search-box">
+        <input type="text" id="cityInput" placeholder="Ingresa una ciudad" />
+        <button id="searchBtn">Buscar</button>
+      </div>
+
+      <div class="weather-card" id="weatherCard">
+        <h2 id="cityName">Ciudad</h2>
+        <p class="temp" id="temperature">-- °C</p>
+        <p id="description">Descripción</p>
+        <p id="humidity">Humedad: --%</p>
+      </div>
+    </div>
+
+    <script src="/js/weather.js"></script>
+  </body>
+</html>
