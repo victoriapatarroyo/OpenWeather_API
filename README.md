@@ -15,7 +15,7 @@ Built with a clean architecture separating frontend and backend, focusing on per
 ## 🎥 Demo
 
 <p align="center">
-  <img src="public/assets/OpenWeather_API.mp4" width="600" />
+  <img src="public/assets/OpenWeather_API.gif" width="600" />
 </p>
 
 ---
