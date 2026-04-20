@@ -116,7 +116,6 @@ OpenWeather_API/
 ---
 ## 🚀 Future Improvements
 📍 Auto-detect user location  
-🌙 Dark mode  
 📊 5-day weather forecast  
 📱 Enhanced mobile responsiveness  
 ⚡ Performance optimization and caching  
