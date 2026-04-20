@@ -1,7 +1,4 @@
-/* ── Reset global ───────────────────────────────────────────────
-   Elimina márgenes y padding predeterminados del navegador,
-   asegura que padding y border no aumenten el tamaño del elemento,
-   y define la fuente base para toda la app */
+/* ── Reset global ─────────────────────────────────────────────── */
 * {
   margin: 0;
   padding: 0;
@@ -9,94 +6,118 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 
-/* ── Fondo y centrado principal ─────────────────────────────────
-   Ocupa toda la altura de la ventana, aplica un gradiente diagonal
-   azul oscuro como fondo, y centra el contenido horizontal y
-   verticalmente con Flexbox */
+/* ── Variables de tema ────────────────────────────────────────── */
+:root {
+  --bg-gradient: linear-gradient(135deg, #1e3c72, #2a5298);
+  --text-color: #ffffff;
+  --container-bg: rgba(255, 255, 255, 0.1);
+  --container-shadow: rgba(0, 0, 0, 0.3);
+  --input-bg: #ffffff;
+  --input-text: #000000;
+  --button-bg: #ff9800;
+  --button-hover: #e68900;
+}
+
+/* Tema oscuro (más profundo y elegante) */
+[data-theme="dark"] {
+  --bg-gradient: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  --text-color: #e0e0e0;
+  --container-bg: rgba(0, 0, 0, 0.4);
+  --container-shadow: rgba(0, 0, 0, 0.6);
+  --input-bg: #1e1e1e;
+  --input-text: #ffffff;
+  --button-bg: #ffa726;
+  --button-hover: #fb8c00;
+}
+
+/* Tema claro (opcional si quieres toggle completo) */
+[data-theme="light"] {
+  --bg-gradient: linear-gradient(135deg, #74ebd5, #acb6e5);
+  --text-color: #222222;
+  --container-bg: rgba(255, 255, 255, 0.7);
+  --container-shadow: rgba(0, 0, 0, 0.2);
+  --input-bg: #ffffff;
+  --input-text: #000000;
+}
+
+/* ── Fondo y centrado principal ───────────────────────────────── */
 body {
   height: 100vh;
-  background: linear-gradient(135deg, #1e3c72, #2a5298);
+  background: var(--bg-gradient);
   display: flex;
   justify-content: center;
   align-items: center;
-  color: white;
+  color: var(--text-color);
+  transition:
+    background 0.4s,
+    color 0.3s;
 }
 
-/* ── Tarjeta principal (efecto glassmorphism) ───────────────────
-   Fondo blanco semitransparente con desenfoque del fondo (blur)
-   para lograr el efecto de vidrio esmerilado.
-   Ancho fijo de 350px para mantener la proporción en escritorio */
+/* ── Tarjeta principal ────────────────────────────────────────── */
 .container {
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--container-bg);
   backdrop-filter: blur(10px);
   padding: 30px;
   border-radius: 15px;
   width: 350px;
   text-align: center;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 10px 25px var(--container-shadow);
+  transition:
+    background 0.3s,
+    box-shadow 0.3s;
 }
 
-/* ── Título ─────────────────────────────────────────────────────
-   Separa el título del campo de búsqueda */
+/* ── Título ───────────────────────────────────────────────────── */
 h1 {
   margin-bottom: 20px;
 }
 
-/* ── Caja de búsqueda ───────────────────────────────────────────
-   Alinea el input y el botón en una fila con separación entre ellos */
+/* ── Caja de búsqueda ─────────────────────────────────────────── */
 .search-box {
   display: flex;
   gap: 10px;
   margin-bottom: 20px;
 }
 
-/* ── Campo de texto ─────────────────────────────────────────────
-   Ocupa todo el espacio disponible junto al botón (flex: 1),
-   sin borde ni contorno para integrarse visualmente al contenedor */
+/* ── Input ────────────────────────────────────────────────────── */
 input {
   flex: 1;
   padding: 10px;
   border: none;
   border-radius: 8px;
   outline: none;
+  background-color: var(--input-bg);
+  color: var(--input-text);
 }
 
-/* ── Botón de búsqueda ──────────────────────────────────────────
-   Color naranja con transición suave al hacer hover,
-   cursor pointer para indicar que es clickeable */
+/* ── Botón ────────────────────────────────────────────────────── */
 button {
   padding: 10px 15px;
   border: none;
   border-radius: 8px;
-  background-color: #ff9800;
+  background-color: var(--button-bg);
   color: white;
   cursor: pointer;
   transition: 0.3s;
 }
 
-/* Oscurece el botón al pasar el cursor para dar feedback visual */
 button:hover {
-  background-color: #e68900;
+  background-color: var(--button-hover);
 }
 
-/* ── Tarjeta de resultados ──────────────────────────────────────
-   Separa el bloque de resultados del campo de búsqueda */
+/* ── Tarjeta de resultados ────────────────────────────────────── */
 .weather-card {
   margin-top: 15px;
 }
 
-/* ── Temperatura ────────────────────────────────────────────────
-   Tamaño grande y negrita para destacar el dato principal */
+/* ── Temperatura ──────────────────────────────────────────────── */
 .temp {
   font-size: 40px;
   font-weight: bold;
   margin: 10px 0;
 }
 
-/* ── Bandera del país ───────────────────────────────────────────
-   Tamaño estándar de 64px de ancho (alto proporcional automático),
-   centrada horizontalmente con margen inferior para separarla
-   del nombre de la ciudad. Bordes ligeramente redondeados */
+/* ── Bandera ─────────────────────────────────────────────────── */
 #countryFlag {
   width: 64px;
   height: auto;

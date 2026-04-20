@@ -4,20 +4,41 @@
     <meta charset="UTF-8" />
     <title>App Clima</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Estilos -->
     <link rel="stylesheet" href="/css/styles.css" />
   </head>
+
   <body>
     <div class="container">
+      <!-- Toggle de tema -->
+      <div class="theme-toggle">
+        <button id="themeToggle" aria-label="Cambiar tema">🌙</button>
+      </div>
+
+      <!-- Título -->
       <h1>🌦 Consulta el Clima</h1>
 
+      <!-- Buscador -->
       <div class="search-box">
-        <input type="text" id="cityInput" placeholder="Ingresa una ciudad" />
+        <input
+          type="text"
+          id="cityInput"
+          placeholder="Ingresa una ciudad"
+          aria-label="Ciudad"
+        />
         <button id="searchBtn">Buscar</button>
       </div>
 
+      <!-- Resultados -->
       <div class="weather-card" id="weatherCard">
-        <img id="countryFlag" src="" alt="Bandera" style="display: none" />
-        <!-- AGREGAR -->
+        <img
+          id="countryFlag"
+          src=""
+          alt="Bandera del país"
+          style="display: none"
+        />
+
         <h2 id="cityName">Ciudad</h2>
         <p class="temp" id="temperature">-- °C</p>
         <p id="description">Descripción</p>
@@ -25,6 +46,7 @@
       </div>
     </div>
 
+    <!-- JS principal -->
     <script src="/js/weather.js"></script>
   </body>
 </html>

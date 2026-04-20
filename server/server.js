@@ -1,77 +1,94 @@
-// Carga las variables de entorno definidas en el archivo .env (ej: OPENWEATHER_API_KEY)
+// Carga las variables de entorno
 require("dotenv").config();
 
 // Importación de dependencias
-const express = require("express"); // Framework para crear el servidor HTTP
-const axios = require("axios"); // Cliente HTTP para consumir APIs externas
-const cors = require("cors"); // Permite peticiones desde otros orígenes (Cross-Origin)
-const path = require("path"); // Utilidad para manejar rutas de archivos del sistema
-const helmet = require("helmet"); // Agrega cabeceras de seguridad HTTP automáticamente
+const express = require("express");
+const axios = require("axios");
+const cors = require("cors");
+const path = require("path");
+const helmet = require("helmet");
 
 const app = express();
 const PORT = 3000;
 
-// Configura Helmet con una política de seguridad de contenido (CSP) personalizada,
-// controlando desde qué orígenes el navegador puede cargar cada tipo de recurso
+// ── Seguridad con Helmet ───────────────────────────────────────
 app.use(
   helmet({
     contentSecurityPolicy: {
       directives: {
-        defaultSrc: ["'self'"], // Por defecto, solo recursos del propio servidor
-        connectSrc: ["'self'", "https://api.openweathermap.org"], // Permite fetch/XHR hacia OpenWeather
+        defaultSrc: ["'self'"],
+        connectSrc: ["'self'", "https://api.openweathermap.org"],
         imgSrc: [
           "'self'",
-          "https://flagsapi.com", // Permite cargar banderas de países
-          "https://openweathermap.org", // Permite cargar íconos del clima
+          "https://flagsapi.com",
+          "https://openweathermap.org",
         ],
-        scriptSrc: ["'self'", "'unsafe-inline'"], // Permite scripts propios e inline
-        styleSrc: ["'self'", "'unsafe-inline'"], // Permite estilos propios e inline
+        scriptSrc: ["'self'", "'unsafe-inline'"],
+        styleSrc: ["'self'", "'unsafe-inline'"],
       },
     },
   }),
 );
 
-// Habilita CORS para permitir que el frontend se comunique con el backend
-// aunque estén en puertos o dominios distintos
+// ── CORS ───────────────────────────────────────────────────────
 app.use(cors());
 
-// Sirve los archivos estáticos del frontend (HTML, CSS, JS) desde la carpeta /public
+// ── Archivos estáticos ─────────────────────────────────────────
 app.use(express.static(path.join(__dirname, "../public")));
 
-// Endpoint principal: recibe el nombre de una ciudad y retorna su clima actual
+// ── Endpoint de clima ──────────────────────────────────────────
 app.get("/weather", async (req, res) => {
-  const city = req.query.city; // Lee el parámetro ?city= de la URL
-  const apiKey = process.env.OPENWEATHER_API_KEY; // Lee la API key desde las variables de entorno
+  const city = req.query.city;
+  const apiKey = process.env.OPENWEATHER_API_KEY;
+
+  // Validación básica
+  if (!city) {
+    return res.status(400).json({ error: "Debe proporcionar una ciudad" });
+  }
+
+  if (!apiKey) {
+    return res.status(500).json({ error: "API key no configurada" });
+  }
 
   try {
-    // Hace la petición a OpenWeather con la ciudad, la API key,
-    // unidades métricas (°C) y respuestas en español
     const response = await axios.get(
       "https://api.openweathermap.org/data/2.5/weather",
       {
         params: {
           q: city,
           appid: apiKey,
-          units: "metric", // Temperatura en Celsius
-          lang: "es", // Descripción del clima en español
+          units: "metric",
+          lang: "es",
         },
       },
     );
 
-    // Retorna al frontend los datos del clima tal como los entrega la API
     res.json(response.data);
   } catch (error) {
-    // Si la ciudad no existe o la API falla, responde con un error 404
-    res.status(404).json({ error: "Ciudad no encontrada" });
+    // 🔥 Manejo de errores mejorado
+    console.error(
+      "Error en OpenWeather:",
+      error.response?.data || error.message,
+    );
+
+    if (error.response) {
+      return res.status(error.response.status).json({
+        error: error.response.data.message || "Error al consultar el clima",
+      });
+    }
+
+    res.status(500).json({
+      error: "Error interno del servidor",
+    });
   }
 });
 
-// Ruta de fallback: sirve el index.html para cualquier ruta no definida
+// ── Ruta principal ─────────────────────────────────────────────
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "../public/index.html"));
 });
 
-// Inicia el servidor y confirma en consola que está corriendo
+// ── Inicialización del servidor ────────────────────────────────
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en http://localhost:${PORT}`);
 });
